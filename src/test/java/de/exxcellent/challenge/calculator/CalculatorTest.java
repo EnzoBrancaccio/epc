@@ -2,12 +2,16 @@ package de.exxcellent.challenge.calculator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import de.exxcellent.challenge.exceptions.InputDataException;
 
 public class CalculatorTest {
 	
@@ -69,6 +73,34 @@ public class CalculatorTest {
 		
 		assertNotEquals(3, calc.findMinimalDifference(listOfTestMaps234, "key", "op1", "op2"));
 		assertEquals(7, calc.findMinimalDifference(listOfTestMaps234, "key", "op1", "op2"));
+		
+		// Testing if the custom exception is thrown
+		// first: missing op1
+		assertThrows(InputDataException.class, new Executable() {
+
+			@Override
+			public void execute() throws Throwable {
+				calc.findMinimalDifference(listOfTestMaps, "key", "", "op2");			
+			}		
+		});
+		
+		// second: missing op2
+		assertThrows(InputDataException.class, new Executable() {
+
+			@Override
+			public void execute() throws Throwable {
+				calc.findMinimalDifference(listOfTestMaps, "key", "op1", "");			
+			}		
+		});
+		
+		// third: missing key
+		assertThrows(InputDataException.class, new Executable() {
+
+			@Override
+			public void execute() throws Throwable {
+				calc.findMinimalDifference(listOfTestMaps, "", "op1", "op2");			
+			}		
+		});
 	}
 
 }
