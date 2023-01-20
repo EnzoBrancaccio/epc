@@ -30,38 +30,53 @@ public class Calculator {
 	
 	/**
 	 * 
-	 * Finds the smallest difference between two integers
-	 * from a list of HashMaps (key: String, value: Int)
-	 * when two keys are given, and returns it.
-	 * Method is not finished yet.
+	 * For searching for a specific value to a given key 
+	 * in a HashMap (key: String, value: Integer),
+	 * based on finding the minimal difference between two values,
+	 * to which the keys also have to be given.
+	 * If >= 2 items have the same minimal difference, only
+	 * the first found specific value is given.
+	 * 
+	 * For example, we want value v for which the difference
+	 * between x and y is the smallest. 
+	 * So we supply the keys for v, x and y.
+	 * For each item in the list, the difference between x and y is determined.
+	 * For the first item with the minimal difference, v is returned.
 	 * 
 	 * @param listOfHashMaps (list of HashMaps (String, Int)
-	 * @param key1 (String, name of first key and operand)
-	 * @param key2 (String, name of second key and operand)
-	 * @return
+	 * @param keyOfFirstOperand (String, name of first key and operand)
+	 * @param keyOfSecondOperand (String, name of second key and operand)
+	 * @param keyOfValueToFind (String, name of the key of the value to return)
+	 * @return valueToFind (int, value found by the algorithm)
 	 */
-	public int findSmallestDifference(ArrayList<HashMap<String, Integer>> listOfHashMaps, String key1, String key2) {
+	public int findMinimalDifference(ArrayList<HashMap<String, Integer>> listOfHashMaps, String keyOfValueToFind, String keyOfFirstOperand, String keyOfSecondOperand) {
 		int smallestDiff = Integer.MAX_VALUE;
+		int valueToFind = 0;
 		
 		if (!listOfHashMaps.isEmpty()) {
 			for (HashMap<String, Integer> hashMap : listOfHashMaps) {
 				int x = 0;
 				int y = 0;
-				if (hashMap.containsKey(key1)) {
-					x = hashMap.get(key1);
+				int val = 0;
+				if (hashMap.containsKey(keyOfFirstOperand)) {
+					x = hashMap.get(keyOfFirstOperand);
 				}
-				if (hashMap.containsKey(key2)) {
-					y = hashMap.get(key2);
+				if (hashMap.containsKey(keyOfSecondOperand)) {
+					y = hashMap.get(keyOfSecondOperand);
+				}
+				if (hashMap.containsKey(keyOfValueToFind)) {
+					val = hashMap.get(keyOfValueToFind);
 				}
 				int diff = subtract(x, y);
 
 				if (diff < smallestDiff) {
 					smallestDiff = diff;
+					valueToFind = val;
 				}
 			}
 		}
 		
-		return smallestDiff;
+		return valueToFind;
 	}
 
 }
