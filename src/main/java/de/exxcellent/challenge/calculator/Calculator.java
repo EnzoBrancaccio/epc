@@ -24,5 +24,26 @@ public class Calculator {
 		int diff = x - y;
 		return diff;
 	}
+	
+	/**
+	 * 
+	 * Subtract int y from int x if x is greater than y,
+	 * else subtract x from y.
+	 * To ensure user gets the absolute difference.
+	 * 
+	 * @param x (int, operand)
+	 * @param y (int, operand)
+	 * @return diff (int, result of greater operand - smaller operand)
+	 */
+	public int subtractSmallerOperand(int x, int y) {
+		int diff = 0;
+		if (x >= y) {
+			diff = x - y;
+		} else {
+			diff = y - x;
+		}
+		
+		return diff;
+	}
 
 }

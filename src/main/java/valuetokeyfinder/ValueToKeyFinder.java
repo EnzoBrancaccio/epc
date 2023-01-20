@@ -67,7 +67,7 @@ public class ValueToKeyFinder {
 				} else {
 					throw new InputDataException("Key of value to find not found");
 				}
-				int diff = calc.subtract(x, y);
+				int diff = calc.subtractSmallerOperand(x, y);
 
 				// change only if "less than", in case of equality first is kept
 				if (diff < minDiff) {
