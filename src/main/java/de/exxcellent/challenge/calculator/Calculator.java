@@ -3,6 +3,8 @@ package de.exxcellent.challenge.calculator;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import de.exxcellent.challenge.exceptions.InputDataException;
+
 /**
  * 
  * Class Calculator provides basic mathematical operations
@@ -50,7 +52,7 @@ public class Calculator {
 	 * @return valueToFind (int, value found by the algorithm)
 	 */
 	public int findMinimalDifference(ArrayList<HashMap<String, Integer>> listOfHashMaps, String keyOfValueToFind, String keyOfFirstOperand, String keyOfSecondOperand) {
-		int smallestDiff = Integer.MAX_VALUE;
+		int minDiff = Integer.MAX_VALUE;
 		int valueToFind = 0;
 		
 		if (!listOfHashMaps.isEmpty()) {
@@ -60,20 +62,28 @@ public class Calculator {
 				int val = 0;
 				if (hashMap.containsKey(keyOfFirstOperand)) {
 					x = hashMap.get(keyOfFirstOperand);
+				} else {
+					throw new InputDataException("First operand not found");
 				}
 				if (hashMap.containsKey(keyOfSecondOperand)) {
 					y = hashMap.get(keyOfSecondOperand);
+				} else {
+					throw new InputDataException("Second operand not found");
 				}
 				if (hashMap.containsKey(keyOfValueToFind)) {
 					val = hashMap.get(keyOfValueToFind);
+				} else {
+					throw new InputDataException("Key of value to find not found");
 				}
 				int diff = subtract(x, y);
 
-				if (diff < smallestDiff) {
-					smallestDiff = diff;
+				if (diff < minDiff) {
+					minDiff = diff;
 					valueToFind = val;
 				}
 			}
+		} else {
+			throw new InputDataException("Input data not found");
 		}
 		
 		return valueToFind;
