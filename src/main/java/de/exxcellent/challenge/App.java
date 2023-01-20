@@ -25,14 +25,17 @@ public final class App {
     	
         FileContentRetriever fct = new FileContentRetriever();
         ValueToKeyFinder vtkf = new ValueToKeyFinder();
-        ArrayList<HashMap<String, String>> fileContent = fct.getFileContent(pathToWeather);
-        String weatherSolution = vtkf.findValueToKeyBasedOnMinimalDifference(fileContent, "Day", "MxT", "MnT");
-        //String footballSolution = vtkf.findValueToKeyBasedOnMinimalDifference(fileContent, "Team", "Goals", "Goals Allowed");
+        
+        ArrayList<HashMap<String, String>> weatherFileContent = fct.getFileContent(pathToWeather);
+        ArrayList<HashMap<String, String>> footballFileContent = fct.getFileContent(pathToFootball);
+        
+        String weatherSolution = vtkf.findValueToKeyBasedOnMinimalDifference(weatherFileContent, "Day", "MxT", "MnT");
+        String footballSolution = vtkf.findValueToKeyBasedOnMinimalDifference(footballFileContent, "Team", "Goals", "Goals Allowed");
 
         String dayWithSmallestTempSpread = weatherSolution;     // Your day analysis function call …
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
 
-        //String teamWithSmallestGoalSpread = footballSolution; // Your goal analysis function call …
-        //System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
+        String teamWithSmallestGoalSpread = footballSolution; // Your goal analysis function call …
+        System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
     }
 }
