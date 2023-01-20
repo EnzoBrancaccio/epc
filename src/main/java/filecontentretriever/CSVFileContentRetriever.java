@@ -16,14 +16,7 @@ import java.util.HashMap;
  *
  */
 public class CSVFileContentRetriever {
-	String fileName;
-	String delimiter = ",";
-	ArrayList<HashMap<String, Integer>> listOfHashMaps;
-	
-	public CSVFileContentRetriever(String fileName, String delimiter) {
-		this.fileName = fileName;
-		this.delimiter = delimiter;
-	}
+	ArrayList<HashMap<String, String>> listOfHashMaps;
 	
 	/**
 	 * 
