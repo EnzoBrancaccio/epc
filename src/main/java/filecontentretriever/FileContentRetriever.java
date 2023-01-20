@@ -13,11 +13,6 @@ import java.util.HashMap;
  *
  */
 public class FileContentRetriever {
-	String fileName;
-	
-	public FileContentRetriever(String fileName) {
-		this.fileName = fileName;
-	}
 	
 	/**
 	 * 
@@ -25,9 +20,10 @@ public class FileContentRetriever {
 	 * then opens the appropriate FileContentRetriever
 	 * and returns a list of HashMaps containing the file contents.
 	 * 
+	 * @param fileName (String, name of file to read from)
 	 * @return fileContents (ArrayList<HashMap<String, String>>)
 	 */
-	public ArrayList<HashMap<String, String>> getFileContent() {
+	public ArrayList<HashMap<String, String>> getFileContent(String fileName) {
 		ArrayList<HashMap<String, String>> fileContent = new ArrayList<HashMap<String, String>>();
 		
 		String csvExtension = ".csv";
