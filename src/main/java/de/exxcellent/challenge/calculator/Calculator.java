@@ -52,10 +52,12 @@ public class Calculator {
 	 * @return valueToFind (int, value found by the algorithm)
 	 */
 	public int findMinimalDifference(ArrayList<HashMap<String, Integer>> listOfHashMaps, String keyOfValueToFind, String keyOfFirstOperand, String keyOfSecondOperand) {
+		// initializing the minimal difference with the highest integer
 		int minDiff = Integer.MAX_VALUE;
 		int valueToFind = 0;
 		
 		if (!listOfHashMaps.isEmpty()) {
+			// go through each hashMap and get the key and 2 operands
 			for (HashMap<String, Integer> hashMap : listOfHashMaps) {
 				int x = 0;
 				int y = 0;
@@ -77,6 +79,7 @@ public class Calculator {
 				}
 				int diff = subtract(x, y);
 
+				// change only if "less than", in case of equality first is kept
 				if (diff < minDiff) {
 					minDiff = diff;
 					valueToFind = val;
