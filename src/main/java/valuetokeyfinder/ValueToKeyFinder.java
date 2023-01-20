@@ -39,26 +39,26 @@ public class ValueToKeyFinder {
 	 * @param keyOfValueToFind (String, name of the key of the value to return)
 	 * @return valueToFind (int, value found by the algorithm)
 	 */
-	public int findValueToKeyBasedOnMinimalDifference(ArrayList<HashMap<String, Integer>> listOfHashMaps, String keyOfValueToFind, String keyOfFirstOperand, String keyOfSecondOperand) {
+	public String findValueToKeyBasedOnMinimalDifference(ArrayList<HashMap<String, String>> listOfHashMaps, String keyOfValueToFind, String keyOfFirstOperand, String keyOfSecondOperand) {
 		Calculator calc = new Calculator();
 		
 		// initializing the minimal difference with the highest integer
 		int minDiff = Integer.MAX_VALUE;
-		int valueToFind = 0;
+		String valueToFind = "";
 		
 		if (!listOfHashMaps.isEmpty()) {
 			// go through each hashMap and get the key and 2 operands
-			for (HashMap<String, Integer> hashMap : listOfHashMaps) {
+			for (HashMap<String, String> hashMap : listOfHashMaps) {
 				int x = 0;
 				int y = 0;
-				int val = 0;
+				String val = "";
 				if (hashMap.containsKey(keyOfFirstOperand)) {
-					x = hashMap.get(keyOfFirstOperand);
+					x = Integer.parseInt(hashMap.get(keyOfFirstOperand));
 				} else {
 					throw new InputDataException("First operand not found");
 				}
 				if (hashMap.containsKey(keyOfSecondOperand)) {
-					y = hashMap.get(keyOfSecondOperand);
+					y = Integer.parseInt(hashMap.get(keyOfSecondOperand));
 				} else {
 					throw new InputDataException("Second operand not found");
 				}
