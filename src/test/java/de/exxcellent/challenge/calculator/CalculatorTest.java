@@ -12,13 +12,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import de.exxcellent.challenge.exceptions.InputDataException;
+import valuetokeyfinder.ValueToKeyFinder;
 
 public class CalculatorTest {
 	
+	ValueToKeyFinder vtk;
 	Calculator calc;
 	
 	@BeforeEach
 	void setup() {
+		vtk = new ValueToKeyFinder();
 		calc = new Calculator();
 	}
 	
@@ -61,8 +64,8 @@ public class CalculatorTest {
 		listOfTestMaps.add(testMap3);
 		listOfTestMaps.add(testMap4);
 		
-		assertEquals(3, calc.findMinimalDifference(listOfTestMaps, "key", "op1", "op2"));
-		assertNotEquals(7, calc.findMinimalDifference(listOfTestMaps, "key", "op1", "op2"));
+		assertEquals(3, vtk.findValueToKeyBasedOnMinimalDifference(listOfTestMaps, "key", "op1", "op2"));
+		assertNotEquals(7, vtk.findValueToKeyBasedOnMinimalDifference(listOfTestMaps, "key", "op1", "op2"));
 		
 		ArrayList<HashMap<String, Integer>> listOfTestMaps234 = new ArrayList<HashMap<String, Integer>>();
 		
@@ -71,8 +74,8 @@ public class CalculatorTest {
 		listOfTestMaps234.add(testMap3);
 		listOfTestMaps234.add(testMap4);
 		
-		assertNotEquals(3, calc.findMinimalDifference(listOfTestMaps234, "key", "op1", "op2"));
-		assertEquals(7, calc.findMinimalDifference(listOfTestMaps234, "key", "op1", "op2"));
+		assertNotEquals(3, vtk.findValueToKeyBasedOnMinimalDifference(listOfTestMaps234, "key", "op1", "op2"));
+		assertEquals(7, vtk.findValueToKeyBasedOnMinimalDifference(listOfTestMaps234, "key", "op1", "op2"));
 		
 		// Testing if the custom exception is thrown
 		// first: missing op1
@@ -80,7 +83,7 @@ public class CalculatorTest {
 
 			@Override
 			public void execute() throws Throwable {
-				calc.findMinimalDifference(listOfTestMaps, "key", "", "op2");			
+				vtk.findValueToKeyBasedOnMinimalDifference(listOfTestMaps, "key", "", "op2");			
 			}		
 		});
 		
@@ -89,7 +92,7 @@ public class CalculatorTest {
 
 			@Override
 			public void execute() throws Throwable {
-				calc.findMinimalDifference(listOfTestMaps, "key", "op1", "");			
+				vtk.findValueToKeyBasedOnMinimalDifference(listOfTestMaps, "key", "op1", "");			
 			}		
 		});
 		
@@ -98,7 +101,7 @@ public class CalculatorTest {
 
 			@Override
 			public void execute() throws Throwable {
-				calc.findMinimalDifference(listOfTestMaps, "", "op1", "op2");			
+				vtk.findValueToKeyBasedOnMinimalDifference(listOfTestMaps, "", "op1", "op2");			
 			}		
 		});
 	}
