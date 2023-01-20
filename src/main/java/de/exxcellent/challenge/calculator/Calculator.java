@@ -16,14 +16,14 @@ public class Calculator {
 
 	/**
 	 * 
-	 * Subtracts y from x and returns the result.
+	 * Subtracts int y from int x and returns the result.
 	 * User is responsible for correct order of operands x and y.
 	 * 
 	 * @param x (int, first operand)
 	 * @param y (int, second operand)
 	 * @return diff (int, result of x - y)
 	 */
-	public int calculateDifference(int x, int y) {
+	public int subtract(int x, int y) {
 		int diff = x - y;
 		return diff;
 	}
@@ -53,7 +53,7 @@ public class Calculator {
 				if (hashMap.containsKey(key2)) {
 					y = hashMap.get(key2);
 				}
-				int diff = calculateDifference(x, y);
+				int diff = subtract(x, y);
 
 				if (diff < smallestDiff) {
 					smallestDiff = diff;
