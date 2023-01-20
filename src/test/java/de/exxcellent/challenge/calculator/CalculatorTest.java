@@ -20,8 +20,8 @@ public class CalculatorTest {
 	
 	@Test
 	void testDifference() {
-		assertEquals(5, calc.calculateDifference(10, 5));
-		assertNotEquals(5, calc.calculateDifference(11, 5));
+		assertEquals(5, calc.subtract(10, 5));
+		assertNotEquals(5, calc.subtract(11, 5));
 	}
 	
 	@Test
